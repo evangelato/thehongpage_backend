@@ -12,9 +12,10 @@ module.exports = function() {
         throw ex;
     });
 
-    winston.configure({ transports: [new winston.transports.File({ filename: 'logfile.log' })] });
+    winston.add(new winston.transports.File({ filename: 'logfile.log' }));
+    // winston.configure({ transports: [new winston.transports.File({ filename: 'logfile.log' })] });
     // winston.add(winston.transports.MongoDB, {
-    //   db: 'mongodb://localhost/vidly',
+    //   db: 'mongodb://localhost/thehongpage',
     //   level: 'info'
     // });
 };
