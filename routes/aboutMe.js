@@ -16,7 +16,7 @@ router.post('/', auth, async (req, res) => {
         return res.status(400).send(error.details[0].message);
     }
     let aboutMe = new AboutMe({ content: req.body.content });
-    aboutMe = await abouwMe.save();
+    aboutMe = await aboutMe.save();
 
     res.send(aboutMe);
 });

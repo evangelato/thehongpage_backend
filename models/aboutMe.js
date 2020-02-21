@@ -14,7 +14,7 @@ const AboutMe = mongoose.model('AboutMe', aboutMeSchema);
 
 function validateAboutMe(aboutMe) {
     const schema = {
-        name: Joi.string().min(5).require()
+        content: Joi.string().min(5).max(5000).required()
     };
     return Joi.validate(aboutMe, schema);
 }

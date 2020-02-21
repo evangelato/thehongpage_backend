@@ -12,10 +12,14 @@ router.get('/me', auth, async (req, res) => {
 
 router.post('/', async (req, res) => {
     const { error } = validate(req.body);
-    if (error) return res.status(400).send(error.details[0].message);
+    if (error) {
+        return res.status(400).send(error.details[0].message);
+    }
 
     let user = await User.findOne({ username: req.body.username });
-    if (user) return res.status(400).send('This username is in use.');
+    if (user) {
+        return res.status(400).send('This username is in use.');
+    }
 
     user = new User(_.pick(req.body, ['name', 'username', 'password']));
     const salt = await bcrypt.genSalt(10);
