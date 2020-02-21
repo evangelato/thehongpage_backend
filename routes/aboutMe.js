@@ -6,7 +6,7 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', async(req, res) => {
-    const aboutMe = await AboutMe.find().sort('_id').limit(1);
+    const aboutMe = await AboutMe.find().sort('-date').limit(1);
     res.send(aboutMe);
 });
     

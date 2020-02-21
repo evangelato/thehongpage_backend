@@ -7,6 +7,11 @@ const aboutMeSchema = new mongoose.Schema({
         required: true,
         minlength: 5,
         maxlength: 5000
+    },
+    date: { 
+        type: Date, 
+        required: true,
+        default: Date.now
     }
 });
 
