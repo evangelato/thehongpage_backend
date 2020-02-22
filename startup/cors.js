@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 
-const allowedOrigin = ['http://localhost:3000']
+const allowedOrigins = ['http://localhost:3000']
 
 module.exports = function(app) {
     app.use(cors({
