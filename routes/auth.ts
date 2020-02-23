@@ -1,11 +1,12 @@
-const Joi = require('joi');
-const bcrypt = require('bcrypt');
-const _ = require('lodash');
+import Joi = require('joi');
+import bcrypt = require('bcrypt');
+import _ = require('lodash');
 const { User } = require('../models/user');
-const express = require('express');
+import express = require('express');
+
 const router = express.Router();
 
-router.post('/', async (req, res) => {
+router.post('/', async (req: express.Request, res: express.Response) => {
     const { error } = validate(req.body);
     if (error) {
         return res.status(400).send(error.details[0].message);
@@ -25,7 +26,7 @@ router.post('/', async (req, res) => {
     res.send(token);
 });
 
-function validate(req) {
+function validate(req: express.Request) {
     const schema = {
         username: Joi.string()
             .min(5)

@@ -1,4 +1,4 @@
-const config = require('config');
+import config = require('config');
 
 module.exports = function() {
   if (!config.get('jwtPrivateKey')) {

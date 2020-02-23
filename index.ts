@@ -1,6 +1,7 @@
-const winston = require('winston');
-const express = require('express');
-const mongoose = require('mongoose');
+import winston = require('winston');
+import express = require('express');
+import mongoose = require('mongoose');
+
 const app = express();
 
 mongoose.set('useCreateIndex', true);
@@ -10,7 +11,7 @@ require('./startup/cors')(app);
 require('./startup/routes')(app);
 require('./startup/db')();
 require('./startup/config')();
-require('./startup/validation')();
+// require('./startup/validation')();
 
 
 const port = process.env.PORT || 4000;

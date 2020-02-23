@@ -1,5 +1,10 @@
-const Joi = require('joi');
-const mongoose = require('mongoose');
+import Joi = require('joi');
+import mongoose = require('mongoose');
+
+interface AboutMeType {
+    content: String,
+    date: Date, 
+}
 
 const aboutMeSchema = new mongoose.Schema({
     content: {
@@ -17,7 +22,7 @@ const aboutMeSchema = new mongoose.Schema({
 
 const AboutMe = mongoose.model('AboutMe', aboutMeSchema);
 
-function validateAboutMe(aboutMe) {
+function validateAboutMe(aboutMe: AboutMeType) {
     const schema = {
         content: Joi.string().min(5).max(5000).required()
     };

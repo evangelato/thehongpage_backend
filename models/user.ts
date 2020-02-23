@@ -1,7 +1,13 @@
-const config = require('config');
-const jwt = require('jsonwebtoken');
-const Joi = require('joi');
-const mongoose = require('mongoose');
+import config = require('config');
+import jwt = require('jsonwebtoken');
+import Joi = require('joi');
+import mongoose = require('mongoose');
+
+interface UserType {
+    name: String,
+    username: String,
+    password: String
+}
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -33,7 +39,7 @@ userSchema.methods.generateAuthToken = function() {
 
 const User = mongoose.model('User', userSchema);
 
-function validateUser(user) {
+function validateUser(user: UserType) {
   const schema = {
     name: Joi.string().min(5).max(50).required(),
     username: Joi.string().min(5).max(255).required(),

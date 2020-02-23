@@ -4,11 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc": "tsc"
   },
   "author": "Evan Hong",
   "license": "ISC",
   "dependencies": {
+    "@types/bcrypt": "^3.0.0",
+    "@types/config": "0.0.36",
+    "@types/cors": "^2.8.6",
+    "@types/express": "^4.17.2",
+    "@types/joi": "^14.3.4",
+    "@types/jsonwebtoken": "^8.3.7",
+    "@types/lodash": "^4.14.149",
+    "@types/mongoose": "^5.7.1",
     "bcrypt": "^3.0.8",
     "config": "^3.2.5",
     "cors": "^2.8.5",
@@ -18,7 +27,9 @@
     "joi-objectid": "^3.0.1",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
+    "mongodb": "^3.5.3",
     "mongoose": "^5.9.1",
+    "typescript": "^3.8.2",
     "winston": "^3.2.1",
     "winston-mongodb": "^5.0.1"
   },

@@ -1,16 +1,29 @@
 const auth = require('../middleware/auth');
-const bcrypt = require('bcrypt');
-const _ = require('lodash');
+import bcrypt = require('bcrypt');
+import _ = require('lodash');
 const { User, validate } = require('../models/user');
-const express = require('express');
+import express = require('express');
+import mongodb = require("mongodb");
+
+interface UserRequestType {
+    user: {
+        name: string,
+        username: string,
+        password: string,
+        isAdmin: boolean,
+        _id: mongodb.ObjectId,
+    }
+}
+
 const router = express.Router();
 
-router.get('/me', auth, async (req, res) => {
+// UserRequestType gives me error. TODO fix
+router.get('/me', auth, async (req: any, res: express.Response) => {
     const user = await User.findById(req.user._id).select('-password');
     res.send(user);
 });
 
-router.post('/', async (req, res) => {
+router.post('/', async (req: express.Request, res: express.Response) => {
     const { error } = validate(req.body);
     if (error) {
         return res.status(400).send(error.details[0].message);

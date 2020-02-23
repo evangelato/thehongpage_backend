@@ -1,16 +1,16 @@
+import express = require('express');
 const { AboutMe, validate } = require('../models/aboutMe');
 const auth = require('../middleware/auth');
 const admin = require('../middleware/admin');
 const validateObjectId = require('../middleware/validateObjectId');
-const express = require('express');
 const router = express.Router();
 
-router.get('/', async(req, res) => {
+router.get('/', async(req: express.Request, res: express.Response) => {
     const aboutMe = await AboutMe.find().sort('-date').limit(1);
     res.send(aboutMe);
 });
     
-router.post('/', auth, async (req, res) => {
+router.post('/', auth, async (req: express.Request, res: express.Response) => {
     const { error } = validate(req.body);
     if (error) {
         return res.status(400).send(error.details[0].message);
@@ -21,7 +21,7 @@ router.post('/', auth, async (req, res) => {
     res.send(aboutMe);
 });
 
-router.delete('/:id', [auth, admin, validateObjectId], async(req, res) => {
+router.delete('/:id', [auth, admin, validateObjectId], async(req: express.Request, res: express.Response) => {
     const aboutMe = await AboutMe.findByIdAndDelete(req.params.id);
     if (!aboutMe) {
         return res.status(404).send('The About Me info with the given ID was not found');
@@ -29,7 +29,7 @@ router.delete('/:id', [auth, admin, validateObjectId], async(req, res) => {
     res.send(aboutMe);
 });
 
-router.put('/:id', [auth, admin, validateObjectId], async(req, res) => {
+router.put('/:id', [auth, admin, validateObjectId], async(req: express.Request, res: express.Response) => {
     const { error } = validate(req.body);
     if (error) {
         return res.status(400).send(error.details[0].message);

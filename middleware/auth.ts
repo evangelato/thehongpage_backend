@@ -1,7 +1,12 @@
-const jwt = require('jsonwebtoken');
-const config = require('config');
+import express = require('express');
+import jwt = require('jsonwebtoken');
+import config = require('config');
 
-module.exports = function (req, res, next) {
+interface UserRequestType extends express.Request {
+    user: string | object
+}
+
+module.exports = function (req: UserRequestType, res: express.Response, next: express.NextFunction) {
   const token = req.header('x-auth-token');
   if (!token) return res.status(401).send('Access denied. No token provided.');
 
