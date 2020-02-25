@@ -1,5 +1,5 @@
 import express = require('express');
-const { AboutMe, validate } = require('../models/aboutMe');
+import { AboutMe, validate } from '../models/aboutMe';
 const auth = require('../middleware/auth');
 const admin = require('../middleware/admin');
 const validateObjectId = require('../middleware/validateObjectId');

@@ -1,9 +1,10 @@
 const auth = require('../middleware/auth');
 import bcrypt = require('bcrypt');
 import _ = require('lodash');
-const { User, validate } = require('../models/user');
+import { User, validate } from '../models/user';
 import express = require('express');
 import mongodb = require("mongodb");
+import { Mongoose } from 'mongoose';
 
 interface UserRequestType {
     user: {
@@ -14,6 +15,7 @@ interface UserRequestType {
         _id: mongodb.ObjectId,
     }
 }
+
 
 const router = express.Router();
 

@@ -1,7 +1,7 @@
 import Joi = require('joi');
 import bcrypt = require('bcrypt');
 import _ = require('lodash');
-const { User } = require('../models/user');
+import { User } from '../models/user';
 import express = require('express');
 
 const router = express.Router();
@@ -26,7 +26,7 @@ router.post('/', async (req: express.Request, res: express.Response) => {
     res.send(token);
 });
 
-function validate(req: express.Request) {
+const validate = (req: express.Request) => {
     const schema = {
         username: Joi.string()
             .min(5)
@@ -41,4 +41,4 @@ function validate(req: express.Request) {
     return Joi.validate(req, schema);
 }
 
-module.exports = router;
+export default router;
