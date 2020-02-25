@@ -6,7 +6,8 @@ interface UserRequestType extends express.Request {
     user: string | object
 }
 
-module.exports = function (req: UserRequestType, res: express.Response, next: express.NextFunction) {
+// Using UserRequestType gives error in other files. TODO: Check this error
+const auth = (req: any, res: express.Response, next: express.NextFunction) => {
   const token = req.header('x-auth-token');
   if (!token) return res.status(401).send('Access denied. No token provided.');
 
@@ -19,3 +20,5 @@ module.exports = function (req: UserRequestType, res: express.Response, next: ex
     res.status(400).send('Invalid token.');
   }
 }
+
+export default auth;

@@ -1,4 +1,4 @@
-const auth = require('../middleware/auth');
+import auth from '../middleware/auth';
 import bcrypt = require('bcrypt');
 import _ = require('lodash');
 import { User, validate } from '../models/user';

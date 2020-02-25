@@ -9,7 +9,8 @@ interface UserRequestType extends express.Request {
     }
 }
 
-module.exports = function(req: UserRequestType, res: express.Response, next: express.NextFunction) {
+// TODO: Solve any type
+const admin = (req: any, res: express.Response, next: express.NextFunction) => {
     // 401 Unauthorized
     // 403 Forbidden
 
@@ -17,3 +18,5 @@ module.exports = function(req: UserRequestType, res: express.Response, next: exp
 
     next();
 };
+
+export default admin;

@@ -1,8 +1,8 @@
 import express = require('express');
 import { AboutMe, validate } from '../models/aboutMe';
-const auth = require('../middleware/auth');
-const admin = require('../middleware/admin');
-const validateObjectId = require('../middleware/validateObjectId');
+import auth from '../middleware/auth';
+import admin from '../middleware/admin';
+import validateObjectId from '../middleware/validateObjectId';
 const router = express.Router();
 
 router.get('/', async(req: express.Request, res: express.Response) => {
