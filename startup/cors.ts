@@ -3,9 +3,9 @@ import cors = require('cors');
 
 const allowedOrigins = ['http://localhost:3000']
 
-module.exports = function(app: express.Application) {
+const corsSetting = (app: express.Application) => {
     app.use(cors({
-        origin: function(origin, callback){
+        origin: (origin, callback) => {
             if(!origin) {
                 return callback(null, true);
             }
@@ -18,3 +18,5 @@ module.exports = function(app: express.Application) {
           }
     }));
 }
+
+export default corsSetting;

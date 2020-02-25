@@ -1,16 +1,22 @@
 import winston = require('winston');
 import express = require('express');
 import mongoose = require('mongoose');
+import logging from './startup/logging';
+import cors from './startup/cors';
+import routes from './startup/routes';
+import db from './startup/db';
+import config from './startup/config';
+
 
 const app = express();
 
 mongoose.set('useCreateIndex', true);
 
-require('./startup/logging')();
-require('./startup/cors')(app);
-require('./startup/routes')(app);
-require('./startup/db')();
-require('./startup/config')();
+logging();
+cors(app);
+routes(app);
+db();
+config();
 // require('./startup/validation')();
 
 

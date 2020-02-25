@@ -2,7 +2,7 @@ import winston = require('winston');
 // require('winston-mongodb');
 require('express-async-errors');
 
-module.exports = function() {
+const logger = () => {
     winston.exceptions.handle(
         new winston.transports.Console(),
         new winston.transports.File({ filename: 'uncaughtExceptions.log' }),
@@ -19,3 +19,5 @@ module.exports = function() {
     //   level: 'info'
     // });
 };
+
+export default logger;
