@@ -2,25 +2,26 @@ import Joi = require('joi');
 import mongoose = require('mongoose');
 
 interface WorkExperienceType {
-    title: string,
-    subTitle: string,
-    content: string,
+    companyName: string,
+    jobTitle: string,
+    description: string,
+    duration: string,
 }
 
 const workExperienceSchema = new mongoose.Schema({
-    title: {
+    companyName: {
         type: String,
         required: true,
         minlength: 5,
         maxlength: 50
     },
-    subTitle: {
+    jobTitle: {
         type: String,
         required: true,
         minlength: 5,
         maxlength: 50
     },
-    content: {
+    description: {
         type: String,
         required: true,
         minlength: 5,
@@ -38,9 +39,9 @@ const WorkExperience = mongoose.model('WorkExperience', workExperienceSchema);
 
 const validateWorkExperience = (workExperience: WorkExperienceType) => {
     const schema = {
-        title: Joi.string().min(5).max(50).required(),
-        subTitle: Joi.string().min(5).max(50).required(),
-        content: Joi.string().min(5).max(5000).required(),
+        companyName: Joi.string().min(5).max(50).required(),
+        jobTitle: Joi.string().min(5).max(50).required(),
+        description: Joi.string().min(5).max(5000).required(),
         duration: Joi.string().min(5).max(50).required()
     };
     return Joi.validate(workExperience, schema);

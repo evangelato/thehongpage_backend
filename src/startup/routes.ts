@@ -1,14 +1,16 @@
 import express = require('express');
-const auth = require('../routes/auth');
-const users = require('../routes/users');
-const aboutMe = require('../routes/aboutMe');
-const error = require('../middleware/error');
+import auth from '../routes/auth';
+import users from '../routes/users';
+import aboutMe from '../routes/aboutMe';
+import workExperiences from '../routes/workExperiences';
+import error from '../middleware/error';
 
 const routes = (app: express.Application) => {
     app.use(express.json());
     app.use('/api/auth', auth);
     app.use('/api/users', users);
     app.use('/api/aboutMe', aboutMe);
+    app.use('/api/workExperiences', workExperiences);
     app.use(error);
 }
 
