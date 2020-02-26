@@ -10,7 +10,7 @@ interface UserType {
     password: string;
 }
 
-interface IUser extends mongoose.Document {
+interface UserInterface extends mongoose.Document {
     name: string;
     username: string;
     password: string;
@@ -42,8 +42,8 @@ const userSchema = new mongoose.Schema({
     isAdmin: Boolean,
 });
 
-userSchema.pre<IUser>('save', function(next) {
-    const user = this;
+userSchema.pre<UserInterface>('save', function(next) {
+    // const user = this;
     next();
 });
 
@@ -52,7 +52,7 @@ userSchema.methods.generateAuthToken = function() {
     return token;
 };
 
-const User = mongoose.model<IUser>('User', userSchema);
+const User = mongoose.model<UserInterface>('User', userSchema);
 
 const validateUser = (user: UserType) => {
     const schema = {
@@ -73,4 +73,4 @@ const validateUser = (user: UserType) => {
     return Joi.validate(user, schema);
 };
 
-export { IUser, User, validateUser as validate };
+export { UserInterface, User, validateUser as validate };

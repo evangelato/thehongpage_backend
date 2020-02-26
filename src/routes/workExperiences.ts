@@ -1,5 +1,5 @@
 import express = require('express');
-import { WorkExperience, validate, workExperienceSchema } from '../models/workExperience';
+import { WorkExperience, validate } from '../models/workExperience';
 import auth from '../middleware/auth';
 import admin from '../middleware/admin';
 import validateObjectId from '../middleware/validateObjectId';
@@ -11,20 +11,20 @@ router.get('/', async (req: express.Request, res: express.Response) => {
     res.send(workExperience);
 });
 
-router.post('/', [auth, admin], async (req:express.Request, res: express.Response) => {
+router.post('/', [auth, admin], async (req: express.Request, res: express.Response) => {
     const { error } = validate(req.body);
     if (error) {
         return res.status(400).send(error.details[0].message);
     }
-    let workExperience = new WorkExperience({ 
+    let workExperience = new WorkExperience({
         companyName: req.body.companyName,
         jobTitle: req.body.jobTitle,
         description: req.body.description,
         duration: req.body.duration,
-    })
+    });
     workExperience = await workExperience.save();
     res.send(workExperience);
-})
+});
 
 router.delete(':/id', [auth, admin, validateObjectId], async (req: express.Request, res: express.Response) => {
     const workExperience = await WorkExperience.findByIdAndDelete(req.params.id);

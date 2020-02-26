@@ -7,7 +7,6 @@ import routes from './startup/routes';
 import db from './startup/db';
 import config from './startup/config';
 
-
 const app = express();
 
 mongoose.set('useCreateIndex', true);
@@ -17,8 +16,6 @@ cors(app);
 routes(app);
 db();
 config();
-// require('./startup/validation')();
-
 
 const port = process.env.PORT || 4000;
 const server = app.listen(port, () => {

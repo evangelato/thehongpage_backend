@@ -3,19 +3,17 @@ import bcrypt = require('bcrypt');
 import _ = require('lodash');
 import { User, validate } from '../models/user';
 import express = require('express');
-import mongodb = require("mongodb");
-import { Mongoose } from 'mongoose';
+import mongodb = require('mongodb');
 
 interface UserRequestType {
     user: {
-        name: string,
-        username: string,
-        password: string,
-        isAdmin: boolean,
-        _id: mongodb.ObjectId,
-    }
+        name: string;
+        username: string;
+        password: string;
+        isAdmin: boolean;
+        _id: mongodb.ObjectId;
+    };
 }
-
 
 const router = express.Router();
 
@@ -45,4 +43,4 @@ router.post('/', async (req: express.Request, res: express.Response) => {
     res.header('x-auth-token', token).send(_.pick(user, ['_id', 'name', 'username']));
 });
 
-module.exports = router;
+export default router;

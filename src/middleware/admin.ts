@@ -2,11 +2,11 @@ import express = require('express');
 
 interface UserRequestType extends express.Request {
     user: {
-        name: string,
-        username: string,
-        password: string,
-        isAdmin: boolean
-    }
+        name: string;
+        username: string;
+        password: string;
+        isAdmin: boolean;
+    };
 }
 
 // TODO: Solve any type

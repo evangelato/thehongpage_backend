@@ -3,25 +3,30 @@ import { AboutMe, validate } from '../models/aboutMe';
 import auth from '../middleware/auth';
 import admin from '../middleware/admin';
 import validateObjectId from '../middleware/validateObjectId';
+
 const router = express.Router();
 
-router.get('/', async(req: express.Request, res: express.Response) => {
-    const aboutMe = await AboutMe.find().sort('-date').limit(1);
+router.get('/', async (req: express.Request, res: express.Response) => {
+    const aboutMe = await AboutMe.find()
+        .sort('-date')
+        .limit(1);
     res.send(aboutMe);
 });
-    
-router.post('/', auth, async (req: express.Request, res: express.Response) => {
+
+router.post('/', [auth, admin], async (req: express.Request, res: express.Response) => {
     const { error } = validate(req.body);
     if (error) {
         return res.status(400).send(error.details[0].message);
     }
-    let aboutMe = new AboutMe({ content: req.body.content });
+    let aboutMe = new AboutMe({
+        content: req.body.content,
+    });
     aboutMe = await aboutMe.save();
 
     res.send(aboutMe);
 });
 
-router.delete('/:id', [auth, admin, validateObjectId], async(req: express.Request, res: express.Response) => {
+router.delete('/:id', [auth, admin, validateObjectId], async (req: express.Request, res: express.Response) => {
     const aboutMe = await AboutMe.findByIdAndDelete(req.params.id);
     if (!aboutMe) {
         return res.status(404).send('The About Me info with the given ID was not found');
@@ -29,20 +34,24 @@ router.delete('/:id', [auth, admin, validateObjectId], async(req: express.Reques
     res.send(aboutMe);
 });
 
-router.put('/:id', [auth, admin, validateObjectId], async(req: express.Request, res: express.Response) => {
+router.put('/:id', [auth, admin, validateObjectId], async (req: express.Request, res: express.Response) => {
     const { error } = validate(req.body);
     if (error) {
         return res.status(400).send(error.details[0].message);
     }
-    
-    const aboutMe = await AboutMe.findByIdAndUpdate(req.params.id, { name: req.body.name }, {
-        new: true
-    });
+
+    const aboutMe = await AboutMe.findByIdAndUpdate(
+        req.params.id,
+        { content: req.body.content },
+        {
+            new: true,
+        },
+    );
 
     if (!aboutMe) {
-        return res.status(404).send('The About Me info with the given ID was not found');
+        return res.status(404).send('The About Me data with the given ID was not found.');
     }
     res.send(aboutMe);
-})
+});
 
-module.exports = router;
+export default router;

@@ -12,6 +12,6 @@ const routes = (app: express.Application) => {
     app.use('/api/aboutMe', aboutMe);
     app.use('/api/workExperiences', workExperiences);
     app.use(error);
-}
+};
 
 export default routes;
