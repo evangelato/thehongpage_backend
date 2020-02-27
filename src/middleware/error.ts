@@ -1,7 +1,7 @@
 import winston = require('winston');
 import express = require('express');
 
-const error = (err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
+const error = (err: Error, req: express.Request, res: express.Response) => {
     winston.error(err.message, err);
 
     // error

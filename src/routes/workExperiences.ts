@@ -7,7 +7,7 @@ import validateObjectId from '../middleware/validateObjectId';
 const router = express.Router();
 
 router.get('/', async (req: express.Request, res: express.Response) => {
-    const workExperience = await WorkExperience.find();
+    const workExperience = await WorkExperience.find().sort('-_id');
     res.send(workExperience);
 });
 
