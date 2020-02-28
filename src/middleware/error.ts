@@ -11,6 +11,8 @@ const error = (err: Error, req: express.Request, res: express.Response) => {
     // debug
     // silly
 
+    // TODO add handling invalid paths
+
     res.status(500).send('Something failed.');
 };
 
