@@ -19,7 +19,7 @@ router.post('/', [auth, admin], async (req: express.Request, res: express.Respon
     let project = new Project({
         title: req.body.title,
         description: req.body.description,
-        photoUrl: req.body.photoUrl,
+        imageUrl: req.body.imageUrl,
         tags: req.body.tags,
         externalUrls: req.body.externalUrls,
         order: req.body.order,
@@ -47,7 +47,7 @@ router.put(':id', [auth, admin, validateObjectId], async (req: express.Request, 
         {
             title: req.body.title,
             description: req.body.description,
-            photoUrl: req.body.photoUrl,
+            imageUrl: req.body.imageUrl,
             tags: req.body.tags,
             externalUrls: req.body.externalUrls,
             order: req.body.order,

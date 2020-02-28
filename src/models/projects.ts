@@ -9,7 +9,7 @@ interface ExternalUrl {
 interface ProjectType {
     title: string;
     description: string;
-    photoUrl: string;
+    imageUrl: string;
     tags: string[];
     externalUrls: ExternalUrl[];
     order: number;
@@ -33,7 +33,7 @@ const projectSchema = new mongoose.Schema({
         minlength: 5,
         maxlength: 200,
     },
-    photoUrl: {
+    imageUrl: {
         type: String,
         required: true,
         maxlength: 200,
@@ -62,7 +62,7 @@ const validateProject = (project: ProjectType) => {
             .min(5)
             .max(200)
             .required(),
-        photoUrl: Joi.string()
+        imageUrl: Joi.string()
             .max(200)
             .required(),
         tags: Joi.array().items(Joi.string()),
