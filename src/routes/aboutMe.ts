@@ -19,6 +19,7 @@ router.post('/', [auth, admin], async (req: express.Request, res: express.Respon
         return res.status(400).send(error.details[0].message);
     }
     let aboutMe = new AboutMe({
+        imageUrl: req.body.imageUrl,
         content: req.body.content,
     });
     aboutMe = await aboutMe.save();
@@ -42,7 +43,10 @@ router.put('/:id', [auth, admin, validateObjectId], async (req: express.Request,
 
     const aboutMe = await AboutMe.findByIdAndUpdate(
         req.params.id,
-        { content: req.body.content },
+        {
+            imageUrl: req.body.imageUrl,
+            content: req.body.content,
+        },
         {
             new: true,
         },
