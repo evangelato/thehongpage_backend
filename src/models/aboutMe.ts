@@ -1,5 +1,6 @@
 import Joi = require('joi');
 import mongoose = require('mongoose');
+
 interface Paragraph {
     content: string;
 }
@@ -18,6 +19,7 @@ const aboutMeSchema = new mongoose.Schema({
     },
     content: {
         type: Array,
+        required: true,
     },
     date: {
         type: Date,

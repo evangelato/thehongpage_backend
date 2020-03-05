@@ -22,6 +22,7 @@ router.post('/', [auth, admin], async (req: express.Request, res: express.Respon
         imageUrl: req.body.imageUrl,
         content: req.body.content,
     });
+
     aboutMe = await aboutMe.save();
 
     res.send(aboutMe);
