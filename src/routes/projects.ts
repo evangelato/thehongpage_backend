@@ -57,7 +57,7 @@ router.put('/:id', [auth, admin, validateObjectId], async (req: express.Request,
         },
     );
     if (!project) {
-        return res.status(404).send('The Project data with the given ID was not found.');
+        return res.status(404).send('The Project with the given ID was not found.');
     }
 });
 

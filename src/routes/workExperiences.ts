@@ -54,7 +54,7 @@ router.put(':/id', [auth, admin, validateObjectId], async (req: express.Request,
     );
 
     if (!workExperience) {
-        return res.status(404).send('The Work Experience data with the given ID was not found.');
+        return res.status(404).send('The Work Experience with the given ID was not found.');
     }
     res.send(workExperience);
 });
