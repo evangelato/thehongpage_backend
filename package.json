@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "npx ts-node ./src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rm -r build && tsc && cp -r ./config/ ./build/config/",
+    "build": "rm -rf build && tsc && cp -r ./config/ ./build/config/",
     "start": "node /build/index.js"
   },
   "engines": {
