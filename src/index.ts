@@ -6,6 +6,7 @@ import cors from './startup/cors';
 import routes from './startup/routes';
 import db from './startup/db';
 import config from './startup/config';
+import prod from './startup/prod';
 
 const app = express();
 
@@ -16,6 +17,7 @@ cors(app);
 routes(app);
 db();
 config();
+prod(app);
 
 const port = process.env.PORT || 4000;
 const server = app.listen(port, () => {
