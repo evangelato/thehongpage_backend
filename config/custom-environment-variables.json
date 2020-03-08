@@ -1,4 +1,4 @@
 {
     "jwtPrivateKey": "thehongpage_jwtPrivateKey",
-    "db": "thehongpage_db"
+    "db": "MONGODB_URI"
 }
