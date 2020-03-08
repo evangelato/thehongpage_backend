@@ -3,7 +3,7 @@ import cors = require('cors');
 
 const allowedOrigins = [
     'http://localhost:3000',
-    'https://thehongpage-frontend.herokuapp.com/',
+    'https://thehongpage-frontend.herokuapp.com',
     'https://thehongpage.com',
 ];
 
