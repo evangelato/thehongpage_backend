@@ -5,6 +5,7 @@ const allowedOrigins = [
     'http://localhost:3000',
     'https://thehongpage-frontend.herokuapp.com',
     'https://thehongpage.com',
+    'https://www.thehongpage.com',
 ];
 
 const corsSetting = (app: express.Application) => {
