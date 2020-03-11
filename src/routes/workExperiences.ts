@@ -7,7 +7,7 @@ import validateObjectId from '../middleware/validateObjectId';
 const router = express.Router();
 
 router.get('/', async (req: express.Request, res: express.Response) => {
-    const workExperience = await WorkExperience.find().sort('-_id');
+    const workExperience = await WorkExperience.find().sort('-order');
     res.send(workExperience);
 });
 
@@ -21,6 +21,8 @@ router.post('/', [auth, admin], async (req: express.Request, res: express.Respon
         jobTitle: req.body.jobTitle,
         description: req.body.description,
         duration: req.body.duration,
+        externalUrls: req.body.externalUrls,
+        order: req.body.order,
     });
     workExperience = await workExperience.save();
     res.send(workExperience);
@@ -47,6 +49,8 @@ router.put(':/id', [auth, admin, validateObjectId], async (req: express.Request,
             jobTitle: req.body.jobTitle,
             description: req.body.description,
             duration: req.body.duration,
+            externalUrls: req.body.externalUrls,
+            order: req.body.order,
         },
         {
             new: true,

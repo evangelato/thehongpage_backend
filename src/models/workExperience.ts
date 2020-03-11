@@ -1,11 +1,23 @@
 import Joi = require('joi');
 import mongoose = require('mongoose');
 
+interface ExternalUrl {
+    description: string;
+    url: string;
+}
+
+const externalUrlSchema = Joi.object().keys({
+    description: Joi.string(),
+    url: Joi.string(),
+});
+
 interface WorkExperienceType {
     companyName: string;
     jobTitle: string;
-    description: string;
+    description: string[];
     duration: string;
+    externalUrls: ExternalUrl[];
+    order: number;
 }
 
 const workExperienceSchema = new mongoose.Schema({
@@ -22,16 +34,21 @@ const workExperienceSchema = new mongoose.Schema({
         maxlength: 50,
     },
     description: {
-        type: String,
+        type: Array,
         required: true,
-        minlength: 5,
-        maxlength: 5000,
     },
     duration: {
         type: String,
         required: true,
         minlength: 5,
         maxlengh: 50,
+    },
+    externalUrls: {
+        type: Array,
+    },
+    order: {
+        type: Number,
+        required: true,
     },
 });
 
@@ -47,14 +64,15 @@ const validateWorkExperience = (workExperience: WorkExperienceType) => {
             .min(5)
             .max(50)
             .required(),
-        description: Joi.string()
-            .min(5)
-            .max(5000)
+        description: Joi.array()
+            .items(Joi.string())
             .required(),
         duration: Joi.string()
             .min(5)
             .max(50)
             .required(),
+        externalUrls: Joi.array().items(externalUrlSchema),
+        order: Joi.number().required(),
     };
     return Joi.validate(workExperience, schema);
 };
