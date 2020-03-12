@@ -7,12 +7,18 @@ interface Paragraph {
 
 interface AboutMeType {
     imageUrl: string;
+    title: string;
     content: Paragraph[];
     date: Date;
 }
 
 const aboutMeSchema = new mongoose.Schema({
     imageUrl: {
+        type: String,
+        required: true,
+        maxlength: 200,
+    },
+    title: {
         type: String,
         required: true,
         maxlength: 200,
@@ -33,6 +39,9 @@ const AboutMe = mongoose.model('AboutMe', aboutMeSchema);
 const validateAboutMe = (aboutMe: AboutMeType) => {
     const schema = {
         imageUrl: Joi.string()
+            .max(200)
+            .required(),
+        title: Joi.string()
             .max(200)
             .required(),
         content: Joi.array()

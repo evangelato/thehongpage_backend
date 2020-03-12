@@ -20,6 +20,7 @@ router.post('/', [auth, admin], async (req: express.Request, res: express.Respon
     }
     let aboutMe = new AboutMe({
         imageUrl: req.body.imageUrl,
+        title: req.body.title,
         content: req.body.content,
     });
 
@@ -46,6 +47,7 @@ router.put('/:id', [auth, admin, validateObjectId], async (req: express.Request,
         req.params.id,
         {
             imageUrl: req.body.imageUrl,
+            title: req.body.title,
             content: req.body.content,
         },
         {
