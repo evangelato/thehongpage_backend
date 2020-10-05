@@ -6,6 +6,8 @@ const allowedOrigins = [
     'https://thehongpage-frontend.herokuapp.com',
     'https://thehongpage.com',
     'https://www.thehongpage.com',
+    'http://thehongpage.com',
+    'http://www.thehongpage.com',
 ];
 
 const corsSetting = (app: express.Application) => {
